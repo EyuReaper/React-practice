@@ -4,6 +4,8 @@ class AppComponent extends React.Component {
     super(props);
     //state is always putin the constructor
     this.state = { count: 5, title: "Hello world" };
+    this.increment = this.increment.bind(this);
+    this.decrement = this.decrement.bind(this);
   }
   render() {
     //object deconstructing syntax: used to extract the state
@@ -22,12 +24,14 @@ class AppComponent extends React.Component {
   }
 
   increment() {
-    //shows button event from console
-    console.log("Inc");
+    const { count } = this.state;
+    //setState changes the state
+    this.setState({ count: count + 1, title: "Inc" });
   }
 
   decrement() {
-    console.log("Dec");
+    const { count } = this.state;
+    this.setState({ count: count - 1, title: "Dec" });
   }
 }
 //ReactDOM is always mandatory inorder to render
