@@ -1,22 +1,34 @@
 class AppComponent extends React.Component {
+  //always pass the parameter throught the super constructor
+  constructor(props) {
+    super(props);
+    //state is always putin the constructor
+    this.state = { count: 5, title: "Hello world" };
+  }
   render() {
-    //written using jsx *only returns the shadow DOM
+    //object deconstructing syntax: used to extract the state
+    const { count, title } = this.state;
+
     return (
       <section classname="sitewrap">
-        <h1>header</h1>
-        <p>lorem</p>
+        <h1>Header:{title}!</h1>
+        <p>the count is:{count}!</p>
+        <div>
+          <button onClick={this.increment}>+</button>
+          <button onClick={this.decrement}>-</button>
+        </div>
       </section>
     );
+  }
 
-    return React.createElement(
-      "section",
-      { className: "site-wrap" },
-      React.createElement("h1", null, "Header"),
-      React.createElement("P", null, "lorim")
-    );
+  increment() {
+    //shows button event from console
+    console.log("Inc");
+  }
+
+  decrement() {
+    console.log("Dec");
   }
 }
-ReactDOM.render(
-  React.createElement(AppComponent, null),
-  document.getElementById("application")
-);
+//ReactDOM is always mandatory inorder to render
+ReactDOM.render(<AppComponent />, document.getElementById("application"));
